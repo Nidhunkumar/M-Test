@@ -1,0 +1,68 @@
+{% extends 'admin_templates/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+  }
+  </style>
+  <style>
+    .image-preview{
+        border: 2px solid #dddddd;
+        min-width: 100px;
+
+        /* default text */
+        display: flex;
+        align-items: center;
+        justify-content:center ;
+        font-weight: bold;
+        color: #cccccc;
+        }
+        .image-preview__image{
+            display: none;
+            width: 100%;
+        }
+        .image-preview__default-text{
+            font-weight: bold;
+            color: #cccccc;   
+        }
+</style>
+<div class="container m-5">
+  {% for mez in messages %} {% if mez.tags == 'success' %}
+  <div
+    class="alert alert-success alert-dismissible fw-bold text-uppercase text-center fade show mx-4 mt-3"
+    role="alert"
+  >
+    <strong>{{ mez.message }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endif %} {% endfor %}
+
+  <div class="row">
+    <div
+      class="col-md-3 mx-auto px-2  mb-5"
+      style="box-shadow: 0px 0px 5px rgb(129, 118, 118)"
+    >
+      <p class="text-center h5 fw-bold mx-1 mx-4 mt-4">ADD-PRODUCT</p>
+      <hr class="bg-warning" />
+      <form method="POST" class="mx-1 mx-md-4">
+        {% csrf_token %} {{form|crispy}}
+
+        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+          <input
+            type="submit"
+            value="ADD"
+            class="btn btn-outline-warning "
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

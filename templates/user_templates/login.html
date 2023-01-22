@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %} 
+{% load socialaccount %}
+
+{% load static %}
+
+	<!-- PAGE TITLE HERE -->
+	<title>{% block page-title %}Login{% endblock %}</title>
+	{% block content %}
+
+	<section class="ftco-section">
+		<div class="container">
+     
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center ">
+					<h2 class="heading-section">Login</h2>
+				</div>
+			</div>
+      <div class="row ">
+        <div class="col-3"></div>
+        <div class="col-7 mt-3">
+          {% if messages %}
+          {% for message in messages %}
+          {% if message.tags == 'error' %}
+          <div class="alert alert-danger  alert-dismissible fade show" role="alert">{{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% else%}
+          <div class="alert alert-primary  alert-dismissible fade show" role="alert">{{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+        </div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-5">
+					<div class="login-wrap p-4 p-md-5">
+						<form action="{% url 'Adminlogin' %}" method="post"  class="login-form">
+		      		{% csrf_token %}
+              <div class="form-group">
+		      			<input type="text" name="username"class="form-control rounded-left" placeholder="Username" required>
+		      		</div>
+	            <div class="form-group d-flex">
+	              <input type="password" name="password" class="form-control rounded-left" placeholder="Password" required>
+	            </div>
+	            <div class="form-group">
+	            	<button type="submit" class="btn btn-primary rounded submit p-3 px-5">Get Started</button>
+                <button type="submit" class="btn btn-primary rounded submit p-3 px-5"><a href="{% url 'google' %}">G</a></button>
+
+              </div>
+	          </form>
+	        </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+   
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="{% static 'adminstatic/vendor/global/global.min.js ' %}"></script>
+    <script src="{% static 'adminstatic/js/custom.min.js' %}"></script>
+    <script src="{% static 'adminstatic/js/deznav-init.js ' %}"></script>
+{% endblock content %}

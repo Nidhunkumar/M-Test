@@ -1,0 +1,90 @@
+{% extends 'admin/base.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+        
+<div class="container mt-2 ">
+  <div class="row justify-content-center my-3">
+  <div class="col-md-6 grid-margin stretch-card ">
+    <div class="card">
+      <div class="card-body ">
+        
+        <h4 class="card-title">Regestration</h4>
+        <hr>
+        <form action="{% url 'UserRegister'%}" method="POST" class="mx-1 mx-md-4 ">
+          {% csrf_token %} 
+          <div class="form-group row">
+            <label for="exampleInputUsername2" class="col-md-3 col-form-label">Username</label>
+            <div class="col-md-3">
+            <input type="text" class="form-control" id="exampleInputUsername2" name="username">
+            </div>
+            {% for message in messages %}
+                                {%if "signupusername" in message.tags %}
+                                    <p><span>{{message}}</span></p>
+                                 {%endif%}        
+                                {% endfor %}
+            <label for="exampleInputUsername2" class="col-md-3 col-form-label">First name</label>
+            <div class="col-md-3">
+            <input type="text" class="form-control" id="exampleInputUsername2" name="first_name">
+            </div>
+            <label for="exampleInputUsername2" class="col-md-3 col-form-label">Last name</label>
+            <div class="col-md-3">
+            <input type="text" class="form-control" id="exampleInputUsername2"name="last_name">
+            </div>
+            <label for="exampleInputUsername2" class="col-md-3 col-form-label">Email</label>
+            <div class="col-md-3">
+            <input type="Email" class="form-control" id="exampleInputUsername2"name="email">
+            </div>
+            {% for message in messages %}
+                                {%if "signupemail" in message.tags %}
+                                    <p>{{message}}</p>
+                                 {%endif%}        
+                                {% endfor %}
+            <label for="exampleInputUsername2" class="col-md-3 col-form-label">Phone</label>
+            <div class="col-md-3">
+            <input type="Phone" class="form-control"name="phone_number">
+            </div>
+            <label for="exampleInputUsername2" class="col-md-3 col-form-label">Password</label>
+            <div class="col-md-3">
+            <input type="Password" class="form-control" id="exampleInputUsername2" name="password1">
+            </div>
+            {% for message in messages %}
+                                {%if "signuppassword" in message.tags %}
+                                     <p class="text-danger">{{message}}</p>
+                                 {%endif%}        
+                                {% endfor %}
+            <label for="exampleInputUsername2" class="col-md-3 col-form-label">Confirm Password</label>
+            <div class="col-md-3">
+            <input type="Password" class="form-control" id="exampleInputUsername2"name="password2">
+            </div>
+            {% for message in messages %}
+            {%if "signuppassword" in message.tags %}
+                 <p>{{message}}</p>
+             {%endif%}        
+            {% endfor %}
+            
+        </div>
+
+            <button type="submit" class="btn btn-primary rounded submit px-5 ">Update</button>
+            <button type="submit" class="btn btn-primary rounded submit px-5 ">google</button>
+
+          </div>
+
+          
+
+            
+        </form>
+      </div>
+      </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  {% endblock content %}
+
